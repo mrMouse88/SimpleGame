@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class Inventory {
     private static Inventory instance = new Inventory();
+//    private Player player = Player.g
 
     private final int CAPACITY = 10;
     private final int MAX_LOAD = 20;
