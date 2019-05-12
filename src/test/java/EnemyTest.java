@@ -1,10 +1,11 @@
 import enemy.*;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EnemyTest {
     @Test
-    public void testZombieCreate(){
+    public void testZombieCreate() {
         EnemyFactory enemyFactory = new EnemyFactory();
 
         Enemy zombie = enemyFactory.getEnemy(EnemyType.ZOMBIE);
@@ -14,7 +15,7 @@ public class EnemyTest {
     }
 
     @Test
-    public void testSkeletonCreate(){
+    public void testSkeletonCreate() {
         EnemyFactory enemyFactory = new EnemyFactory();
 
         Enemy skeleton = enemyFactory.getEnemy(EnemyType.SKELETON);
