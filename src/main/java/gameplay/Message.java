@@ -8,6 +8,6 @@ public enum Message {
     ITEM_NOT_FOUND,
     INVENTORY_CLEARED,
     WEAPON_TAKEN,
-    WEAPON_PUTED_AWAY,
+    WEAPON_PUT_AWAY,
     IS_NOT_WEAPON,
 }

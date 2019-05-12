@@ -34,7 +34,7 @@ public class Player {
 
     public Message putAwayWeapon(){
         weapon = null;
-        return Message.WEAPON_PUTED_AWAY;
+        return Message.WEAPON_PUT_AWAY;
 
     }
 }
