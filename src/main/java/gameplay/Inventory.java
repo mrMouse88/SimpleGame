@@ -49,8 +49,10 @@ public class Inventory {
         }
     }
 
-    public Message removeItem(int index){
+    public Message removeItem(int index) {
         if (index < itemList.size()) {
+            load -= itemList.get(index).getWeight();
+            fill -= itemList.get(index).getSize();
             itemList.remove(index);
             return Message.ITEM_REMOVED;
         } else {
@@ -58,14 +60,14 @@ public class Inventory {
         }
     }
 
-    public Message removeAllItems(){
-        for (int i = 0; i < itemList.size(); i++) {
-            itemList.remove(i);
+    public Message removeAllItems() {
+        for (int i = itemList.size()-1; i >= 0; i--) {
+            removeItem(i);
         }
         return Message.INVENTORY_CLEARED;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return itemList.size() == 0;
     }
 
