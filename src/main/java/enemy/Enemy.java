@@ -18,7 +18,7 @@ public class Enemy {
     }
 
     public boolean isDead() {
-        return false;
+        return health > 0;
     }
 
     public int getHealth() {
