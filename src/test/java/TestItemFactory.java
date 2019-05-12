@@ -8,15 +8,15 @@ public class TestItemFactory {
         }
     }
 
-    public static DummyItem getCorrectItem(){
-        return new DummyItem(1,1);
+    public static items.Item getCorrectItem() {
+        return new DummyItem(1, 1);
     }
 
-    public static DummyItem getBigItem(){
-        return new DummyItem(1,11);
+    public static items.Item getBigItem() {
+        return new DummyItem(1, 11);
     }
 
-    public static DummyItem getHeavyItem(){
-        return new DummyItem(21,1);
+    public static items.Item getHeavyItem() {
+        return new DummyItem(21, 1);
     }
 }

@@ -49,6 +49,26 @@ public class Inventory {
         }
     }
 
+    public Message removeItem(int index){
+        if (index < itemList.size()) {
+            itemList.remove(index);
+            return Message.ITEM_REMOVED;
+        } else {
+            return Message.ITEM_NOT_FOUND;
+        }
+    }
+
+    public Message removeAllItems(){
+        for (int i = 0; i < itemList.size(); i++) {
+            itemList.remove(i);
+        }
+        return Message.INVENTORY_CLEARED;
+    }
+
+    public boolean isEmpty(){
+        return itemList.size() == 0;
+    }
+
     public int getCAPACITY() {
         return CAPACITY;
     }
