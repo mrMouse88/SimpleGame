@@ -41,10 +41,10 @@ public class Inventory {
         }
     }
 
-    public Optional<Item> getItem(int index){
-        if(index<itemList.size()){
+    public Optional<Item> getItem(int index) {
+        if (index < itemList.size()) {
             return Optional.of(itemList.get(index));
-        }else{
+        } else {
             return Optional.empty();
         }
     }
