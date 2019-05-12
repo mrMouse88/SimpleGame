@@ -1,6 +1,4 @@
 import builders.WeaponBuilder;
-import items.Item;
-import items.Mixture;
 import items.Weapon;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
