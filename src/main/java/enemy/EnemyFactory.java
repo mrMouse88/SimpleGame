@@ -1,12 +1,14 @@
 package enemy;
 
+import static enemy.EnemyType.*;
+
 public class EnemyFactory {
     public Enemy getEnemy(EnemyType enemyType) {
         switch (enemyType) {
             case ZOMBIE:
-                return new Enemy(50, 5);
+                return new Enemy(ZOMBIE.getHealth(), ZOMBIE.getDamage());
             case SKELETON:
-                return new Enemy(15, 20);
+                return new Enemy(SKELETON.getHealth(), SKELETON.getDamage());
             default:
                 return null;
         }

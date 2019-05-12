@@ -9,8 +9,8 @@ public class EnemyTest {
 
         Enemy zombie = enemyFactory.getEnemy(EnemyType.ZOMBIE);
 
-        assertThat(zombie.getHealth()).isEqualTo(50);
-        assertThat(zombie.getDamage()).isEqualTo(5);
+        assertThat(zombie.getHealth()).isEqualTo(EnemyType.ZOMBIE.getHealth());
+        assertThat(zombie.getDamage()).isEqualTo(EnemyType.ZOMBIE.getDamage());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class EnemyTest {
 
         Enemy skeleton = enemyFactory.getEnemy(EnemyType.SKELETON);
 
-        assertThat(skeleton.getHealth()).isEqualTo(15);
-        assertThat(skeleton.getDamage()).isEqualTo(20);
+        assertThat(skeleton.getHealth()).isEqualTo(EnemyType.SKELETON.getHealth());
+        assertThat(skeleton.getDamage()).isEqualTo(EnemyType.SKELETON.getDamage());
     }
 }
