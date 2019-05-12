@@ -1,4 +1,7 @@
 package enemy;
 
-public abstract class Enemy {
+public interface Enemy {
+    public void attack();
+    public void getDamage();
+    public boolean isDead();
 }
