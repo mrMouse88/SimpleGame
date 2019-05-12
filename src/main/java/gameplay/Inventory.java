@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class Inventory {
+    private static Inventory instance = new Inventory();
+
     private final int CAPACITY = 10;
     private final int MAX_LOAD = 20;
     private int fill = 0;
@@ -18,12 +20,7 @@ public class Inventory {
 
     //for singleton
     public static Inventory getInstance() {
-        return InventoryHolder.INSTANCE;
-    }
-
-    //for singleton
-    private static class InventoryHolder {
-        private static final Inventory INSTANCE = new Inventory();
+        return instance;
     }
 
     public Message addItem(Item item) {
