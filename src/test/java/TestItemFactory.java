@@ -1,22 +1,22 @@
 public class TestItemFactory {
 
     //item class for testing
-    static class Item extends items.Item {
+    static class DummyItem extends items.Item {
 
-        public Item(int weight, int size) {
+        public DummyItem(int weight, int size) {
             super(weight, size);
         }
     }
 
-    public static Item getCorrectItem(){
-        return new Item(1,1);
+    public static DummyItem getCorrectItem(){
+        return new DummyItem(1,1);
     }
 
-    public static Item getBigItem(){
-        return new Item(1,11);
+    public static DummyItem getBigItem(){
+        return new DummyItem(1,11);
     }
 
-    public static Item getHeavyItem(){
-        return new Item(21,1);
+    public static DummyItem getHeavyItem(){
+        return new DummyItem(21,1);
     }
 }
