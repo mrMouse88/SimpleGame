@@ -16,7 +16,7 @@ public class Player {
     private Player() {
     }
 
-    public Player getInstance() {
+    public static Player getInstance() {
         return instance;
     }
 
@@ -35,6 +35,21 @@ public class Player {
     public Message putAwayWeapon(){
         weapon = null;
         return Message.WEAPON_PUT_AWAY;
+    }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public Amulet getAmulet() {
+        return amulet;
+    }
+
+    public Armor getArmor() {
+        return armor;
     }
 }

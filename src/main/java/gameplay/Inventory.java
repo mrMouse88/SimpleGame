@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class Inventory {
     private static Inventory instance = new Inventory();
-//    private Player player = Player.g
+    private Player player = Player.getInstance();
 
     private final int CAPACITY = 10;
     private final int MAX_LOAD = 20;
@@ -49,10 +49,14 @@ public class Inventory {
 
     public Message removeItem(int index) {
         if (index < itemList.size()) {
-            load -= itemList.get(index).getWeight();
-            fill -= itemList.get(index).getSize();
-            itemList.remove(index);
-            return Message.ITEM_REMOVED;
+            if(!itemList.get(index).equals(player.getWeapon())) {
+                load -= itemList.get(index).getWeight();
+                fill -= itemList.get(index).getSize();
+                itemList.remove(index);
+                return Message.ITEM_REMOVED;
+            }else{
+                return Message.ITEM_USED;
+            }
         } else {
             return Message.ITEM_NOT_FOUND;
         }
