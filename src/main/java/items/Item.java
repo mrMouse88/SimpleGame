@@ -8,4 +8,12 @@ public abstract class Item {
         this.weight = weight;
         this.size = size;
     }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getSize() {
+        return size;
+    }
 }
