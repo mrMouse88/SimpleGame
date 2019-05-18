@@ -5,7 +5,7 @@ import items.*;
 import java.util.Optional;
 
 public class Player {
-    private static Player instance = new Player();
+    private static Player instance = new Player(100);
     private Inventory inventory = Inventory.getInstance();
 
     private int health;
@@ -13,7 +13,8 @@ public class Player {
     private Amulet amulet = null;
     private Armor armor = null;
 
-    private Player() {
+    private Player(int health) {
+        this.health = health;
     }
 
     public static Player getInstance() {
