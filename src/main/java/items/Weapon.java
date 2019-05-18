@@ -5,13 +5,15 @@ public class Weapon extends Item {
     private int maxDamage;
     private float chanceOfHit;
     private int durability;
+    private String name;
 
-    public Weapon(int weight, int size, int minDamage, int maxDamage, float chanceOfHit, int durability) {
+    public Weapon(int weight, int size, int minDamage, int maxDamage, float chanceOfHit, int durability, String name) {
         super(weight, size);
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
         this.chanceOfHit = chanceOfHit;
         this.durability = durability;
+        this.name = name;
     }
 
     public int getMinDamage() {

@@ -9,6 +9,7 @@ public class WeaponBuilder {
     private int maxDamage;
     private float chanceOfHit;
     private int durability;
+    private String name;
 
     public WeaponBuilder size(int size) {
         this.size = size;
@@ -40,7 +41,12 @@ public class WeaponBuilder {
         return this;
     }
 
+    public WeaponBuilder name(String name){
+        this.name = name;
+        return this;
+    }
+
     public Weapon build(){
-        return new Weapon(weight, size, minDamage, maxDamage, chanceOfHit, durability);
+        return new Weapon(weight, size, minDamage, maxDamage, chanceOfHit, durability, name);
     }
 }
