@@ -1,6 +1,8 @@
 import gameplay.Inventory;
 import gameplay.Message;
+import gameplay.Player;
 import items.Item;
+import items.builders.ArmorBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,8 @@ public class InventoryTest {
     public void initialize(){
         Inventory inventory = Inventory.getInstance();
         inventory.removeAllItems();
+        Player player = Player.getInstance();
+        player.resetPlayer();
     }
 
     @Test
@@ -72,5 +76,22 @@ public class InventoryTest {
         assertThat(inventory.getLoad()).isEqualTo(0);
         assertThat(inventory.getFill()).isEqualTo(0);
         assertThat(inventory.isEmpty()).isTrue();
+    }
+
+    @Test
+    public void isTakenTest(){
+        Inventory inventory = Inventory.getInstance();
+        Player player = Player.getInstance();
+
+        inventory.addItem(new ArmorBuilder()
+                .weight(1)
+                .size(1)
+                .name("Normal Armor")
+                .health(100)
+                .build()
+        );
+        assertThat(inventory.isTaken(0)).isFalse();
+        player.takeArmor(0);
+        assertThat(inventory.isTaken(0)).isTrue();
     }
 }

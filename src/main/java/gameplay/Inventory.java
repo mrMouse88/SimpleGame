@@ -49,12 +49,12 @@ public class Inventory {
 
     public Message removeItem(int index) {
         if (index < itemList.size()) {
-            if(!itemList.get(index).equals(player.getWeapon())) {
+            if (true) {
                 load -= itemList.get(index).getWeight();
                 fill -= itemList.get(index).getSize();
                 itemList.remove(index);
                 return Message.ITEM_REMOVED;
-            }else{
+            } else {
                 return Message.ITEM_USED;
             }
         } else {
@@ -63,10 +63,18 @@ public class Inventory {
     }
 
     public Message removeAllItems() {
-        for (int i = itemList.size()-1; i >= 0; i--) {
-            removeItem(i);
+        if (!isEmpty()) {
+            for (int i = itemList.size() - 1; i >= 0; i--) {
+                removeItem(i);
+            }
         }
         return Message.INVENTORY_CLEARED;
+    }
+
+    public boolean isTaken(int index){
+        return itemList.get(index).equals(player.getWeapon()) ||
+               itemList.get(index).equals(player.getArmor()) ||
+               itemList.get(index).equals(player.getAmulet());
     }
 
     public boolean isEmpty() {
