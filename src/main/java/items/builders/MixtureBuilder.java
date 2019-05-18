@@ -1,4 +1,4 @@
-package builders;
+package items.builders;
 
 import items.Mixture;
 import items.MixturePurpose;

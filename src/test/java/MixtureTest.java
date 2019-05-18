@@ -1,4 +1,4 @@
-import builders.MixtureBuilder;
+import items.builders.MixtureBuilder;
 import items.Item;
 import items.Mixture;
 import items.MixturePurpose;

@@ -1,4 +1,4 @@
-import builders.WeaponBuilder;
+import items.builders.WeaponBuilder;
 import items.Item;
 import items.Weapon;
 import org.junit.jupiter.api.Test;
