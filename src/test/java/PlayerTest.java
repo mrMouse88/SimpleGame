@@ -56,7 +56,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void atackTest() {
+    public void attackTest() {
         inventory.addItem(new WeaponBuilder()
                 .size(1)
                 .weight(1)
