@@ -7,7 +7,8 @@ import java.util.Optional;
 import java.util.Random;
 
 public class Player {
-    private static Player instance = new Player(100);
+    private static final int LIFE_LEVEL = 100;
+    private static Player instance = new Player(LIFE_LEVEL);
     private Inventory inventory = Inventory.getInstance();
 
     //HANDS as weapon
@@ -35,8 +36,16 @@ public class Player {
 
     public void resetPlayer() {
         this.health = 100;
-        this.armor = null;
-        this.weapon = HANDS;
+        if (armor != null) {
+            putAwayArmor();
+        } else {
+            this.armor = null;
+        }
+        if (weapon != HANDS) {
+            putAwayWeapon();
+        } else {
+            this.weapon = HANDS;
+        }
         this.amulet = null;
     }
 
@@ -119,6 +128,20 @@ public class Player {
     public Message putAwayWeapon() {
         weapon = HANDS;
         return Message.WEAPON_PUT_AWAY;
+    }
+
+    public void useMixture(Mixture mixture) {
+        switch (mixture.getMixturePurpose()) {
+            case HEALING:
+                if (health < LIFE_LEVEL) {
+                    if (health + mixture.getAddedValue() > LIFE_LEVEL) {
+                        health = 100;
+                    } else {
+                        health += mixture.getAddedValue();
+                    }
+//                    inventory.removeItem()
+                }
+        }
     }
 
     public boolean isDead() {

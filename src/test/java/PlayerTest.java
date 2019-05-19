@@ -132,10 +132,11 @@ public class PlayerTest {
 
     @Test
     public void takeNotExistingArmorTest() {
+        assertThat(inventory.isEmpty()).isTrue();
         assertThat(player.getArmor()).isEqualTo(null);
         assertThat(player.takeArmor(0)).isEqualTo(Message.INVENTORY_EMPTY);
         assertThat(player.getArmor()).isEqualTo(null);
     }
 
-    //Waepon tests
+    //Weapon tests
 }
