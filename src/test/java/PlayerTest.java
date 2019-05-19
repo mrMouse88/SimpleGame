@@ -6,8 +6,6 @@ import items.builders.WeaponBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.text.MaskFormatter;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
@@ -70,20 +68,20 @@ public class PlayerTest {
         );
         int attack = player.attack();
         System.out.println(attack);
-        assertThat(attack).isBetween(0,2);
+        assertThat(attack).isBetween(0, 2);
 
         attack = player.attack();
         System.out.println(attack);
-        assertThat(attack).isBetween(0,2);
+        assertThat(attack).isBetween(0, 2);
 
         player.takeWeapon(0);
         attack = player.attack();
         System.out.println(attack);
-        assertThat(attack).isBetween(5,10);
+        assertThat(attack).isBetween(5, 10);
 
         attack = player.attack();
         System.out.println(attack);
-        assertThat(attack).isBetween(5,10);
+        assertThat(attack).isBetween(5, 10);
     }
 
     //Armor tests
