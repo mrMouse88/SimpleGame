@@ -11,17 +11,17 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class InventoryTest {
+    private Inventory inventory = Inventory.getInstance();
+    private Player player = Player.getInstance();
+
     @BeforeEach
     public void initialize(){
-        Inventory inventory = Inventory.getInstance();
         inventory.removeAllItems();
-        Player player = Player.getInstance();
         player.resetPlayer();
     }
 
     @Test
     public void inventoryCorrectAddingTest() {
-        Inventory inventory = Inventory.getInstance();
         assertThat(inventory.addItem(TestItemFactory.getCorrectItem())).isEqualTo(Message.ITEM_ADDED);
         assertThat(inventory.getFill()).isEqualTo(1);
         assertThat(inventory.getLoad()).isEqualTo(1);
@@ -29,21 +29,18 @@ public class InventoryTest {
 
     @Test
     public void inventoryTooBigAddingTest() {
-        Inventory inventory = Inventory.getInstance();
         assertThat(inventory.addItem(TestItemFactory.getBigItem())).isEqualTo(Message.ITEM_TOO_BIG);
         assertThat(inventory.isEmpty()).isTrue();
     }
 
     @Test
     public void inventoryTooHeavyAddingTest() {
-        Inventory inventory = Inventory.getInstance();
         assertThat(inventory.addItem(TestItemFactory.getHeavyItem())).isEqualTo(Message.ITEM_TOO_HEAVY);
         assertThat(inventory.isEmpty()).isTrue();
     }
 
     @Test
     public void getItemTest() {
-        Inventory inventory = Inventory.getInstance();
         Item item = TestItemFactory.getCorrectItem();
         inventory.addItem(item);
         assertThat(inventory.getItem(0)).isEqualTo(Optional.of(item));
@@ -52,7 +49,6 @@ public class InventoryTest {
 
     @Test
     public void removeItemTest(){
-        Inventory inventory = Inventory.getInstance();
         inventory.addItem(TestItemFactory.getCorrectItem());
         assertThat(inventory.getLoad()).isEqualTo(1);
         assertThat(inventory.getFill()).isEqualTo(1);
@@ -64,7 +60,6 @@ public class InventoryTest {
 
     @Test
     public void removeAllTest(){
-        Inventory inventory = Inventory.getInstance();
         inventory.addItem(TestItemFactory.getCorrectItem());
         inventory.addItem(TestItemFactory.getCorrectItem());
         inventory.addItem(TestItemFactory.getCorrectItem());
@@ -80,15 +75,12 @@ public class InventoryTest {
 
     @Test
     public void isTakenTest(){
-        Inventory inventory = Inventory.getInstance();
-        Player player = Player.getInstance();
 
         inventory.addItem(new ArmorBuilder()
-                .weight(1)
                 .size(1)
-                .name("Normal Armor")
+                .weight(1)
                 .health(100)
-                .build()
+                .name("Normal armor").build()
         );
         assertThat(inventory.isTaken(0)).isFalse();
         player.takeArmor(0);

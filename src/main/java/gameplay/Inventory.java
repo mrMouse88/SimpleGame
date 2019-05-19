@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public class Inventory {
     private static Inventory instance = new Inventory();
-    private Player player = Player.getInstance();
 
     private final int CAPACITY = 10;
     private final int MAX_LOAD = 20;
@@ -72,13 +71,11 @@ public class Inventory {
     }
 
     public boolean isTaken(int index){
-        return itemList.get(index).equals(player.getWeapon()) ||
-               itemList.get(index).equals(player.getArmor()) ||
-               itemList.get(index).equals(player.getAmulet());
+        return itemList.get(index).isTaken();
     }
 
     public boolean isEmpty() {
-        return itemList.size() == 0;
+        return itemList.isEmpty();
     }
 
     public int getCAPACITY() {

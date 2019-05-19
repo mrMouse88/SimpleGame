@@ -50,12 +50,13 @@ public class Player {
     }
 
     public Message takeArmor(int index){
-        if(inventory.isEmpty()){
+        if(false){
             return Message.INVENTORY_EMPTY;
         }else {
             Optional item = inventory.getItem(index);
             if (item.get() instanceof Armor) {
                 this.armor = (Armor) item.get();
+                armor.setTaken(true);
                 return Message.ARMOR_TAKEN;
             } else if (item.get() instanceof Item) {
                 return Message.IS_NOT_ARMOR;
@@ -66,6 +67,7 @@ public class Player {
     }
 
     public Message putAwayArmor(){
+        armor.setTaken(false);
         armor = null;
         return Message.ARMOR_PUT_AWAY;
     }
