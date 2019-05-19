@@ -20,6 +20,41 @@ public class PlayerTest {
         inventory.removeAllItems();
     }
 
+    //Damage test
+    @Test
+    public void gainDamageTest(){
+        assertThat(player.getHealth()).isEqualTo(100);
+        assertThat(player.gainDamage(50)).isEqualTo(Message.DAMAGE_GAINED);
+        assertThat(player.getHealth()).isEqualTo(50);
+        assertThat(player.gainDamage(50)).isEqualTo(Message.PLAYER_DEAD);
+        assertThat(player.getHealth()).isEqualTo(0);
+    }
+
+    @Test
+    public void gainDamageWithArmorTest(){
+        inventory.addItem(new ArmorBuilder()
+                .size(1)
+                .weight(1)
+                .name("normal Armor")
+                .health(100)
+        .build());
+
+        player.takeArmor(0);
+        assertThat(player.hasArmor()).isTrue();
+        assertThat(player.getHealth()).isEqualTo(100);
+        assertThat(player.gainDamage(50)).isEqualTo(Message.DAMAGE_GAINED);
+
+        assertThat(player.hasArmor()).isTrue();
+        assertThat(player.getHealth()).isEqualTo(100);
+        assertThat(player.gainDamage(50)).isEqualTo(Message.ITEM_DESTROYED);
+        assertThat(player.hasArmor()).isFalse();
+        assertThat(inventory.isEmpty()).isTrue();
+
+        assertThat(player.getHealth()).isEqualTo(100);
+        assertThat(player.gainDamage(100)).isEqualTo(Message.PLAYER_DEAD);
+        assertThat(player.getHealth()).isEqualTo(0);
+    }
+
     //Armor tests
     @Test
     public void takeArmorTest() {

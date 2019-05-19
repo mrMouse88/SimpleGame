@@ -21,38 +21,38 @@ public class Player {
         return instance;
     }
 
-    public void resetPlayer(){
+    public void resetPlayer() {
         this.health = 100;
         this.armor = null;
         this.weapon = null;
         this.amulet = null;
     }
 
-    public Message gainDamage(int damage){
-        if(armor.isDamaged() || armor.equals(null)){
-            if(damage > health){
-                health = 0;
-                return Message.PLAYER_DEAD;
-            }else{
-                health -= damage;
-                return Message.DAMAGE_GAINED;
-            }
-        }else{
+    public Message gainDamage(int damage) {
+        if (hasArmor()) {
             armor.gainDamage(damage);
-            if(armor.isDamaged()){
+            if (armor.isDamaged()) {
                 int index = inventory.getItemList().indexOf(armor);
-                armor = null;
+                putAwayArmor();
                 inventory.removeItem(index);
                 return Message.ITEM_DESTROYED;
             }
             return Message.DAMAGE_GAINED;
+        } else {
+            if (damage >= health) {
+                health = 0;
+                return Message.PLAYER_DEAD;
+            } else {
+                health -= damage;
+                return Message.DAMAGE_GAINED;
+            }
         }
     }
 
-    public Message takeArmor(int index){
-        if(false){
+    public Message takeArmor(int index) {
+        if (false) {
             return Message.INVENTORY_EMPTY;
-        }else {
+        } else {
             Optional item = inventory.getItem(index);
             if (item.get() instanceof Armor) {
                 this.armor = (Armor) item.get();
@@ -66,10 +66,14 @@ public class Player {
         }
     }
 
-    public Message putAwayArmor(){
+    public Message putAwayArmor() {
         armor.setTaken(false);
         armor = null;
         return Message.ARMOR_PUT_AWAY;
+    }
+
+    public boolean hasArmor() {
+        return !(armor == null);
     }
 
     public Message takeWeapon(int index) {
