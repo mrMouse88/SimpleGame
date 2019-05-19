@@ -1,15 +1,27 @@
 package gameplay;
 
 import items.*;
+import items.builders.WeaponBuilder;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class Player {
     private static Player instance = new Player(100);
     private Inventory inventory = Inventory.getInstance();
 
+    //HANDS as weapon
+    private final Weapon HANDS = new WeaponBuilder()
+            .size(0)
+            .weight(0)
+            .durability(1)
+            .minDamage(1)
+            .maxDamage(2)
+            .chanceOfHit(0.5f)
+            .build();
+
     private int health;
-    private Weapon weapon = null;
+    private Weapon weapon = HANDS;
     private Amulet amulet = null;
     private Armor armor = null;
 
@@ -24,8 +36,24 @@ public class Player {
     public void resetPlayer() {
         this.health = 100;
         this.armor = null;
-        this.weapon = null;
+        this.weapon = HANDS;
         this.amulet = null;
+    }
+
+    public int attack() {
+        if (!weapon.equals(HANDS)) {
+            weapon.wear();
+            if (weapon.getDurability() <= 0) {
+                putAwayWeapon();
+            }
+        }
+        Random random = new Random();
+        if (random.nextDouble() < weapon.getChanceOfHit()) {
+            return random.nextInt(weapon.getMaxDamage() - weapon.getMinDamage() + 1) + weapon.getMinDamage();
+        } else {
+            return 0;
+        }
+
     }
 
     public Message gainDamage(int damage) {
@@ -50,7 +78,7 @@ public class Player {
     }
 
     public Message takeArmor(int index) {
-        if (false) {
+        if (inventory.isEmpty()) {
             return Message.INVENTORY_EMPTY;
         } else {
             Optional item = inventory.getItem(index);
@@ -89,7 +117,7 @@ public class Player {
     }
 
     public Message putAwayWeapon() {
-        weapon = null;
+        weapon = HANDS;
         return Message.WEAPON_PUT_AWAY;
     }
 

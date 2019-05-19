@@ -22,7 +22,7 @@ public class PlayerTest {
 
     //Damage test
     @Test
-    public void gainDamageTest(){
+    public void gainDamageTest() {
         assertThat(player.getHealth()).isEqualTo(100);
         assertThat(player.gainDamage(50)).isEqualTo(Message.DAMAGE_GAINED);
         assertThat(player.getHealth()).isEqualTo(50);
@@ -31,13 +31,13 @@ public class PlayerTest {
     }
 
     @Test
-    public void gainDamageWithArmorTest(){
+    public void gainDamageWithArmorTest() {
         inventory.addItem(new ArmorBuilder()
                 .size(1)
                 .weight(1)
                 .name("normal Armor")
                 .health(100)
-        .build());
+                .build());
 
         player.takeArmor(0);
         assertThat(player.hasArmor()).isTrue();
@@ -53,6 +53,37 @@ public class PlayerTest {
         assertThat(player.getHealth()).isEqualTo(100);
         assertThat(player.gainDamage(100)).isEqualTo(Message.PLAYER_DEAD);
         assertThat(player.getHealth()).isEqualTo(0);
+    }
+
+    @Test
+    public void atackTest() {
+        inventory.addItem(new WeaponBuilder()
+                .size(1)
+                .weight(1)
+                .size(1)
+                .durability(10)
+                .minDamage(5)
+                .maxDamage(10)
+                .name("sword")
+                .chanceOfHit(1)
+                .build()
+        );
+        int attack = player.attack();
+        System.out.println(attack);
+        assertThat(attack).isBetween(0,2);
+
+        attack = player.attack();
+        System.out.println(attack);
+        assertThat(attack).isBetween(0,2);
+
+        player.takeWeapon(0);
+        attack = player.attack();
+        System.out.println(attack);
+        assertThat(attack).isBetween(5,10);
+
+        attack = player.attack();
+        System.out.println(attack);
+        assertThat(attack).isBetween(5,10);
     }
 
     //Armor tests

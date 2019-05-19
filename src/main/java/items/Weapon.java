@@ -31,4 +31,8 @@ public class Weapon extends Item {
     public int getDurability() {
         return durability;
     }
+
+    public void wear() {
+        durability--;
+    }
 }
