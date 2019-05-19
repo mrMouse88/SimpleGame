@@ -15,7 +15,7 @@ public class InventoryTest {
     private Player player = Player.getInstance();
 
     @BeforeEach
-    public void initialize(){
+    public void initialize() {
         inventory.removeAllItems();
         player.resetPlayer();
     }
@@ -48,7 +48,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void removeItemTest(){
+    public void removeItemTest() {
         inventory.addItem(TestItemFactory.getCorrectItem());
         assertThat(inventory.getLoad()).isEqualTo(1);
         assertThat(inventory.getFill()).isEqualTo(1);
@@ -59,7 +59,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void removeAllTest(){
+    public void removeAllTest() {
         inventory.addItem(TestItemFactory.getCorrectItem());
         inventory.addItem(TestItemFactory.getCorrectItem());
         inventory.addItem(TestItemFactory.getCorrectItem());
@@ -74,7 +74,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void isTakenTest(){
+    public void isTakenTest() {
 
         inventory.addItem(new ArmorBuilder()
                 .size(1)
@@ -85,5 +85,7 @@ public class InventoryTest {
         assertThat(inventory.isTaken(0)).isFalse();
         player.takeArmor(0);
         assertThat(inventory.isTaken(0)).isTrue();
+        player.putAwayArmor();
+        assertThat(inventory.isTaken(0)).isFalse();
     }
 }

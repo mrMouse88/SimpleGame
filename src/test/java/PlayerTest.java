@@ -5,6 +5,9 @@ import items.builders.ArmorBuilder;
 import items.builders.WeaponBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import javax.swing.text.MaskFormatter;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerTest {
@@ -12,14 +15,14 @@ public class PlayerTest {
     private Inventory inventory = Inventory.getInstance();
 
     @BeforeEach // fresh player and inventory instance
-    public void initialize(){
+    public void initialize() {
         player.resetPlayer();
         inventory.removeAllItems();
     }
 
     //Armor tests
     @Test
-    public void takeArmorTest(){
+    public void takeArmorTest() {
         inventory.addItem(new ArmorBuilder()
                 .size(1)
                 .weight(1)
@@ -32,7 +35,22 @@ public class PlayerTest {
     }
 
     @Test
-    public void takeNotArmorTest(){
+    public void putAwayArmorTest() {
+        inventory.addItem(new ArmorBuilder()
+                .size(1)
+                .weight(1)
+                .health(100)
+                .name("Normal armor").build()
+        );
+        assertThat(player.getArmor()).isEqualTo(null);
+        assertThat(player.takeArmor(0)).isEqualTo(Message.ARMOR_TAKEN);
+        assertThat(player.getArmor().getHealth()).isEqualTo(100);
+        assertThat(player.putAwayArmor()).isEqualTo(Message.ARMOR_PUT_AWAY);
+        assertThat(player.getArmor()).isEqualTo(null);
+    }
+
+    @Test
+    public void takeNotArmorTest() {
         inventory.addItem(new WeaponBuilder()
                 .size(1)
                 .weight(1)
@@ -49,7 +67,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void takeNotExistingArmorTest(){
+    public void takeNotExistingArmorTest() {
         assertThat(player.getArmor()).isEqualTo(null);
         assertThat(player.takeArmor(0)).isEqualTo(Message.INVENTORY_EMPTY);
         assertThat(player.getArmor()).isEqualTo(null);
