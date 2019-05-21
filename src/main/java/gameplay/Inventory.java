@@ -61,9 +61,19 @@ public class Inventory {
         }
     }
 
-//    public Message remveItem(Item item){
-//
-//    }
+    public Message removeItem(Item item){
+        if(item.isTaken()){
+            return Message.ITEM_USED;
+        }else{
+            if(itemList.contains(item)){
+                load -= itemList.get(itemList.indexOf(item)).getWeight();
+                fill -= itemList.get(itemList.indexOf(item)).getSize();
+                itemList.remove(item);
+                return Message.ITEM_REMOVED;
+            }
+            return Message.ITEM_NOT_FOUND;
+        }
+    }
 
     public Message removeAllItems() {
         if (!isEmpty()) {
