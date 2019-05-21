@@ -2,19 +2,21 @@ package enemy;
 
 public class Enemy {
     private int health;
-    private int damage;
+    private int minDamage;
+    private int maxDamage;
 
-    public Enemy(int health, int damage) {
+    public Enemy(int health, int minDamage, int maxDamage) {
         this.health = health;
-        this.damage = damage;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
     }
 
     public void attack() {
 
     }
 
-    public void gainDamage() {
-
+    public void gainDamage(int damage) {
+        this.health -= damage;
     }
 
     public boolean isDead() {
@@ -25,15 +27,12 @@ public class Enemy {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public int getMinDamage() {
+        return minDamage;
     }
 
-    public int getDamage() {
-        return damage;
+    public int getMaxDamage() {
+        return maxDamage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
 }

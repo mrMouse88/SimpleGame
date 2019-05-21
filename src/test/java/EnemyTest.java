@@ -1,4 +1,6 @@
-import enemy.*;
+import enemy.Enemy;
+import enemy.EnemyFactory;
+import enemy.EnemyType;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +13,8 @@ public class EnemyTest {
         Enemy zombie = enemyFactory.getEnemy(EnemyType.ZOMBIE);
 
         assertThat(zombie.getHealth()).isEqualTo(EnemyType.ZOMBIE.getHealth());
-        assertThat(zombie.getDamage()).isEqualTo(EnemyType.ZOMBIE.getDamage());
+        assertThat(zombie.getMinDamage()).isEqualTo(EnemyType.ZOMBIE.getMinDamage());
+        assertThat(zombie.getMaxDamage()).isEqualTo(EnemyType.ZOMBIE.getMaxDamage());
     }
 
     @Test
@@ -21,6 +24,7 @@ public class EnemyTest {
         Enemy skeleton = enemyFactory.getEnemy(EnemyType.SKELETON);
 
         assertThat(skeleton.getHealth()).isEqualTo(EnemyType.SKELETON.getHealth());
-        assertThat(skeleton.getDamage()).isEqualTo(EnemyType.SKELETON.getDamage());
+        assertThat(skeleton.getMinDamage()).isEqualTo(EnemyType.SKELETON.getMinDamage());
+        assertThat(skeleton.getMaxDamage()).isEqualTo(EnemyType.SKELETON.getMaxDamage());
     }
 }
