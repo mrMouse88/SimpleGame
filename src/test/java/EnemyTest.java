@@ -27,4 +27,39 @@ public class EnemyTest {
         assertThat(skeleton.getMinDamage()).isEqualTo(EnemyType.SKELETON.getMinDamage());
         assertThat(skeleton.getMaxDamage()).isEqualTo(EnemyType.SKELETON.getMaxDamage());
     }
+
+    @Test
+    public void gainDamageTest(){
+        EnemyFactory enemyFactory = new EnemyFactory();
+        Enemy skeleton = enemyFactory.getEnemy(EnemyType.SKELETON);
+
+        assertThat(skeleton.getHealth()).isEqualTo(EnemyType.SKELETON.getHealth());
+        skeleton.gainDamage(10);
+        assertThat(skeleton.getHealth()).isEqualTo(EnemyType.SKELETON.getHealth()-10);
+    }
+
+    @Test
+    public void isDeadTest(){
+        EnemyFactory enemyFactory = new EnemyFactory();
+        Enemy skeleton = enemyFactory.getEnemy(EnemyType.SKELETON);
+
+        assertThat(skeleton.isDead()).isFalse();
+        skeleton.gainDamage(15);
+        assertThat(skeleton.isDead()).isTrue();
+    }
+
+    @Test
+    public void attackTest(){
+        EnemyFactory enemyFactory = new EnemyFactory();
+        Enemy skeleton = enemyFactory.getEnemy(EnemyType.SKELETON);
+        Enemy zombie = enemyFactory.getEnemy(EnemyType.ZOMBIE);
+
+        assertThat(skeleton.attack()).isBetween(0,40);
+        System.out.println(skeleton.attack());
+        System.out.println(skeleton.attack());
+        System.out.println(skeleton.attack());
+        System.out.println(skeleton.attack());
+        assertThat(zombie.attack()).isBetween(0,15);
+        System.out.println(zombie.attack());
+    }
 }

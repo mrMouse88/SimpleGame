@@ -1,17 +1,27 @@
 package enemy;
 
+import java.util.Random;
+
 public class Enemy {
     private int health;
     private int minDamage;
     private int maxDamage;
+    private float chanceOfHit;
 
-    public Enemy(int health, int minDamage, int maxDamage) {
+    public Enemy(int health, int minDamage, int maxDamage, float chanceOfHit) {
         this.health = health;
         this.minDamage = minDamage;
         this.maxDamage = maxDamage;
+        this.chanceOfHit = chanceOfHit;
     }
 
-    public void attack() {
+    public int attack() {
+        Random random = new Random();
+        if (random.nextDouble() < chanceOfHit) {
+            return random.nextInt(maxDamage - minDamage + 1) + minDamage;
+        } else {
+            return 0;
+        }
 
     }
 
@@ -20,7 +30,7 @@ public class Enemy {
     }
 
     public boolean isDead() {
-        return health > 0;
+        return health <= 0;
     }
 
     public int getHealth() {
@@ -33,6 +43,10 @@ public class Enemy {
 
     public int getMaxDamage() {
         return maxDamage;
+    }
+
+    public float getChanceOfHit(){
+        return chanceOfHit;
     }
 
 }
